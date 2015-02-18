@@ -16,4 +16,4 @@ Enter letters at the >> prompt to navigate the program.
 
 ## License
 
-Vessel is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT)
+gpa-tools is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT).
