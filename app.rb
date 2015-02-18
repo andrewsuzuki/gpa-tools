@@ -9,6 +9,11 @@ class App
 		return input
 	end
 
+	def header(text)
+		border = "-" * text.length
+		puts border, text, border
+	end
+
 	def run()
 
 		puts %q{
@@ -24,9 +29,7 @@ _\__, / _  .___/\__,_/        \__/ \____/\____//_/  /____/
 		input = nil 
 
 		while input != "q"
-			puts "---------"
-			puts "MAIN MENU"
-			puts "---------"
+			header("MAIN MENU")
 			puts "'q' to exit"
 			puts "'c' for cumulative gpa calculator"
 
@@ -44,9 +47,7 @@ _\__, / _  .___/\__,_/        \__/ \____/\____//_/  /____/
 	end
 
 	def run_cumulative()
-		puts "------------------------"
-		puts "Calculate Cumulative GPA"
-		puts "------------------------"
+		header("Calculate Cumulative GPA")
 
 		college = College.new
 
@@ -75,7 +76,7 @@ _\__, / _  .___/\__,_/        \__/ \____/\____//_/  /____/
 				college.listSemesters()
 				college.deleteSemester(prompt().to_i)
 			elsif input == "c"
-				puts college.calculate()
+				puts "Cumulative GPA: " + college.calculate()
 			elsif input == "q"
 			else
 				puts "Sorry, didn't understand that command."
