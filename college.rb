@@ -6,7 +6,7 @@ class Semester
 	end
 
 	def worth
-		return @gpa * @credits
+		@gpa * @credits
 	end
 
 	attr_reader :gpa
@@ -49,6 +49,10 @@ class College
 	end
 
 	def calculate()
+		if @semesters.length == 0
+			return nil
+		end
+
 		worth = 0
 		chours = 0
 
@@ -57,7 +61,8 @@ class College
 			chours += sem.credits()
 		end
 
-		return worth / chours
+		# if chours is zero, return 0. else, return cumulative gpa
+		return chours ? worth / chours : 0.0
 	end
 
 end

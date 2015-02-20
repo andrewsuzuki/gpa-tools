@@ -54,6 +54,7 @@ _\__, / _  .___/\__,_/        \__/ \____/\____//_/  /____/
 		input = nil
 
 		while input != "q"
+			puts ""
 			puts "'q' to exit (to menu)"
 			puts "'a' to add semester"
 			puts "'l' to list semesters"
@@ -76,7 +77,13 @@ _\__, / _  .___/\__,_/        \__/ \____/\____//_/  /____/
 				college.listSemesters()
 				college.deleteSemester(prompt().to_i)
 			elsif input == "c"
-				puts "Cumulative GPA: " + college.calculate()
+				cgpa = college.calculate()
+
+				if cgpa == nil
+					puts "You have not entered any semester GPAs yet."
+				else
+					puts "Cumulative GPA: " + cgpa.to_s
+				end
 			elsif input == "q"
 			else
 				puts "Sorry, didn't understand that command."
