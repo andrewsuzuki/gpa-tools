@@ -195,11 +195,8 @@ class College
 
 	def listSemesters()
 		if @semesters.length
-			i = 1
-
-			@semesters.each do |sem|
-				puts "Semester " + i.to_s + " / GPA: " + sem.gpa().gpa.to_s + ", Credit-hours: " + sem.credits().to_s
-				i += 1
+			@semesters.each_with_index do |sem, i|
+				puts "Semester " + (i + 1).to_s + " / GPA: " + sem.gpa().gpa.to_s + ", Credit-hours: " + sem.credits().to_s
 			end
 		else
 			puts "No semesters have been added yet."
