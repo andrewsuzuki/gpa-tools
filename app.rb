@@ -29,9 +29,9 @@ _\__, / _  .___/\__,_/        \__/ \____/\____//_/  /____/
 		input = nil 
 
 		while input != "q"
-			header("MAIN MENU")
-			puts "'q' to exit"
-			puts "'c' for cumulative gpa calculator"
+			header("Main Menu")
+			puts "q: exit"
+			puts "c: cumulative gpa calculator"
 
 			input = prompt()
 
@@ -55,27 +55,41 @@ _\__, / _  .___/\__,_/        \__/ \____/\____//_/  /____/
 
 		while input != "q"
 			puts ""
-			puts "'q' to exit (to menu)"
-			puts "'a' to add semester"
-			puts "'l' to list semesters"
-			puts "'d' to delete an added semester"
-			puts "'c' to calculate cumulative GPA"
+			puts "q: exit (to menu)"
+			puts "a: add semester"
+			puts "m: move semester"
+			puts "l: list semesters"
+			puts "d: delete an added semester"
+			puts "c: calculate cumulative GPA"
 
 			input = prompt()
 	
 			if input == "a"
+				#puts ""
+				#type = prompt()
 				puts "Semester GPA:"
 				gpa = prompt() 
 				puts "Semester Total Credit Hours:"
 				hours = prompt()
 
-				college.addSemester(gpa, hours)
+				begin
+					college.addSemesterWithGpa(gpa, hours)
+				rescue Exception => e
+					puts e.message
+				end
 			elsif input == "l"
 				college.listSemesters()
 			elsif input == "d"
 				puts "Which semester? (Enter number)"
 				college.listSemesters()
 				college.deleteSemester(prompt().to_i)
+			elsif input == "m"
+				puts "Which semester? (Enter number)"
+				college.listSemesters()
+				from = prompt().to_i
+				puts "Switch with? (Enter number)"
+				to = prompt().to_i
+				college.moveSemester(from, to)
 			elsif input == "c"
 				cgpa = college.calculate()
 
