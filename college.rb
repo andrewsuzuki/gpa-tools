@@ -1,5 +1,4 @@
 class Grade
-
 	attr_reader :gpa
 
 	def initialize(grade=nil, letterGrades=nil)
@@ -92,7 +91,6 @@ class Grade
 end
 
 class Course
-
 	attr_reader :grade, :credits
 
 	def initialize(grade, credits)
@@ -100,13 +98,12 @@ class Course
 		@credits = credits.to_f
 	end
 
-	def worth
+	def weight
 		@grade * @credits
 	end
 end
 
 class Semester
-
 	attr_reader :courses, :gpa, :credits
 
 	def initialize(gpa = nil, credits = nil)
@@ -134,15 +131,17 @@ class Semester
 
 	def addCourse(grade, credits)
 		@courses.push(Course.new(grade, credits))
+		@courses.each do |course|
+			total 
+		end
 	end
 
-	def worth
+	def weight
 		@gpa.gpa * @credits
 	end
 end
 
 class College
-
 	def initialize()
 		@semesters = []
 	end
@@ -210,15 +209,15 @@ class College
 	def calculate()
 		unless has_semesters?() then return nil end
 
-		worth = 0
+		weight = 0
 		chours = 0
 
 		@semesters.each do |sem|
-			worth += sem.worth()
+			weight += sem.weight()
 			chours += sem.credits()
 		end
 
 		# if chours is zero, return 0. else, return cumulative gpa
-		chours ? worth / chours : 0.0
+		chours ? weight / chours : 0.0
 	end
 end
