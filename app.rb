@@ -14,6 +14,14 @@ class App
 		puts border, text, border
 	end
 
+	def handleError(lamb)
+		begin
+			lamb.call
+		rescue Exception => e
+			puts "Error: " + e.message
+		end
+	end
+
 	def run()
 
 		puts %q{
@@ -65,18 +73,12 @@ _\__, / _  .___/\__,_/        \__/ \____/\____//_/  /____/
 			input = prompt()
 	
 			if input == "a"
-				#puts ""
-				#type = prompt()
 				puts "Semester GPA:"
 				gpa = prompt() 
 				puts "Semester Total Credit Hours:"
 				hours = prompt()
 
-				begin
-					college.addSemesterWithGpa(gpa, hours)
-				rescue Exception => e
-					puts e.message
-				end
+				handleError(lambda { college.addSemesterWithGpa(gpa, hours) })
 			elsif input == "l"
 				college.listSemesters()
 			elsif input == "d"
@@ -89,14 +91,16 @@ _\__, / _  .___/\__,_/        \__/ \____/\____//_/  /____/
 				from = prompt().to_i
 				puts "Switch with? (Enter number)"
 				to = prompt().to_i
-				college.moveSemester(from, to)
-			elsif input == "c"
-				cgpa = college.calculate()
+				
+				# move semester and handle errors
+				handleError(lambda { college.moveSemester(from, to) })
 
-				if cgpa == nil
-					puts "You have not entered any semester GPAs yet."
-				else
+				college.listSemesters()
+			elsif input == "c"
+				unless (cgpa = college.calculate()).nil?
 					puts "Cumulative GPA: " + cgpa.to_s
+				else
+					puts "You have not entered any semester GPAs yet."
 				end
 			elsif input == "q"
 			else

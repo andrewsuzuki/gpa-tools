@@ -194,7 +194,7 @@ class College
 	end
 
 	def listSemesters()
-		if @semesters.length
+		unless countSemesters() == 0 
 			@semesters.each_with_index do |sem, i|
 				puts "Semester " + (i + 1).to_s + " / GPA: " + sem.gpa().gpa.to_s + ", Credit-hours: " + sem.credits().to_s
 			end
@@ -204,7 +204,7 @@ class College
 	end
 
 	def calculate()
-		if @semesters.length == 0 then return nil end
+		if countSemesters() == 0 then return nil end
 
 		worth = 0
 		chours = 0
