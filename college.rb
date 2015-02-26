@@ -151,6 +151,10 @@ class College
 		@semesters.length
 	end
 
+	def has_semesters?()
+		@semesters.length != 0
+	end
+
 	# Checks if semester n exists (ordinal)
 	def semesterExists(n)
 		n.is_a?(Integer) && n >= 1 && n <= @semesters.length
@@ -194,7 +198,7 @@ class College
 	end
 
 	def listSemesters()
-		unless countSemesters() == 0 
+		if has_semesters?()
 			@semesters.each_with_index do |sem, i|
 				puts "Semester " + (i + 1).to_s + " / GPA: " + sem.gpa().gpa.to_s + ", Credit-hours: " + sem.credits().to_s
 			end
@@ -204,7 +208,7 @@ class College
 	end
 
 	def calculate()
-		if countSemesters() == 0 then return nil end
+		unless has_semesters?() then return nil end
 
 		worth = 0
 		chours = 0
