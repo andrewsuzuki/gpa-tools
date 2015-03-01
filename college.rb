@@ -131,9 +131,15 @@ class Semester
 
 	def addCourse(grade, credits)
 		@courses.push(Course.new(grade, credits))
+		# TODO: fix this........
+		weight = 0.0
+		credits = 0.0
 		@courses.each do |course|
-			total 
+			weight += course.weight
+			credits += course.credits
 		end
+
+		@gpa = Grade.new(weight / credits)
 	end
 
 	def weight

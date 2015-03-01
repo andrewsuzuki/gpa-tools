@@ -34,40 +34,17 @@ _\__, / _  .___/\__,_/        \__/ \____/\____//_/  /____/
               by andrew suzuki
 		}
 	
-		input = nil 
-
-		while input != "q"
-			header("Main Menu")
-			puts "q: exit"
-			puts "c: cumulative gpa calculator"
-
-			input = prompt()
-
-			if input == "c"
-				run_cumulative()
-			elsif input == "q"
-				puts "See ya!"
-			else
-				puts "Sorry, I didn't understand that command."
-			end
-		end
-
-	end
-
-	def run_cumulative()
-		header("Calculate Cumulative GPA")
-
 		college = College.new
 
 		input = nil
 
 		while input != "q"
 			puts ""
-			puts "q: exit (to menu)"
+			puts "q: quit"
 			puts "a: add semester"
 			puts "m: move semester"
 			puts "l: list semesters"
-			puts "d: delete an added semester"
+			puts "d: delete semester"
 			puts "c: calculate cumulative GPA"
 
 			input = prompt()
@@ -103,6 +80,7 @@ _\__, / _  .___/\__,_/        \__/ \____/\____//_/  /____/
 					puts "You have not entered any semester GPAs yet."
 				end
 			elsif input == "q"
+				puts "See ya!"
 			else
 				puts "Sorry, didn't understand that command."
 			end
